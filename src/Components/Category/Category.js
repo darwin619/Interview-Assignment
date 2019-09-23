@@ -1,12 +1,9 @@
 import React from "react";
 import "./Category.scss";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
 import { connect } from "react-redux";
 import { selectCategories } from "../../Redux/Category/category-selectors";
 import { getProductList } from "../../Redux/Product/product-actions";
@@ -14,8 +11,8 @@ import { toggleMoreItems } from "../../Redux/Toggle/toggle-actions";
 import { selectToggleMoreItems } from "../../Redux/Toggle/toggle-selectors";
 import { setTabValue } from "../../Redux/Tab/tab-actions";
 import { selectTabValue } from "../../Redux/Tab/tab-selectors";
-import { ScrollToTab } from "../../Utils/ScrollToTab";
-import ProductList from "../../Components/ProductList/ProductList";
+import ProductListContainer from "../../Components/ProductList/ProductListContainer";
+import { createStructuredSelector } from "reselect";
 
 function a11yProps(index) {
   return {
@@ -44,7 +41,7 @@ const Category = ({ categories, dispatch, loadMore, value }) => {
     const categoryName = categoryItem[0].category_name;
     setName(categoryName);
     dispatch(getProductList(id));
-  }, [value]);
+  }, [value, categories, dispatch]);
 
   function handleChange(event, newValue) {
     dispatch(setTabValue(newValue));
@@ -57,7 +54,7 @@ const Category = ({ categories, dispatch, loadMore, value }) => {
       <h1 className="category-sub">
         No harmful Chemicals. Sulphates & Paraben Free. No Side Effectsss.
       </h1>
-      <AppBar position="static" className="appbar" ref={tabRef}>
+      <AppBar position="static" className="appbar">
         <Tabs
           value={value}
           onChange={handleChange}
@@ -66,11 +63,12 @@ const Category = ({ categories, dispatch, loadMore, value }) => {
           scrollButtons="off"
           className="tabs"
           TabIndicatorProps={{ style: { background: "#157ebc" } }}
+          ref={tabRef}
         >
           {categories.map(
             ({ category_name, category_id, category_image }, index) => (
               <Tab
-                id={category_id}
+                key={category_id}
                 label={
                   <span style={{ color: index === value ? "#157ebc" : "" }}>
                     {category_name}
@@ -84,15 +82,15 @@ const Category = ({ categories, dispatch, loadMore, value }) => {
           )}
         </Tabs>
       </AppBar>
-      <ProductList divRef={tabRef} />
+      <ProductListContainer divRef={tabRef} categoryName={name} />
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  categories: selectCategories(state),
-  loadMore: selectToggleMoreItems(state),
-  value: selectTabValue(state)
+const mapStateToProps = createStructuredSelector({
+  categories: selectCategories,
+  loadMore: selectToggleMoreItems,
+  value: selectTabValue
 });
 
 export default connect(mapStateToProps)(Category);

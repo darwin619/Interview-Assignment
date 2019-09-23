@@ -1,7 +1,5 @@
 import React from "react";
 import "./ProductItem.scss";
-import { connect } from "react-redux";
-import { compose } from "redux";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CustomButton from "../CustomButton/CustomButton";

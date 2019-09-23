@@ -8,6 +8,7 @@
   color: #757575;
   font-weight: 500;
   margin-left: 20px;
+  margin-top: 20px;
 }
 
 .appbar {
@@ -15,14 +16,20 @@
   display: flex;
   justify-content: center;
   box-shadow: none !important;
-  width: 91% !important;
+  width: 90% !important;
   margin: 30px auto;
   overflow-x: auto !important;
+
+  @media screen and (max-width: 800px) {
+   width: 100% !important;
+   margin-left: 10px !important;
+  }
 }
 
 .tabs {
   background-color: white !important;
   box-shadow: none !important;
+  overflow-x: auto !important;
 
   @media screen and (min-width: 800px) {
     border-bottom: 2px solid rgba(204, 204, 204, 0.8) !important;
@@ -35,13 +42,16 @@
     background: #fff !important;
     color: #000 !important;
     font-size: 16px !important;
-    font-weight: bolder !important;
-    color: #757575 !important;
+    font-weight: 400 !important;
+    color: #000 !important;
     padding: 0 !important;
     line-height: 1.3;
+    letter-spacing: 1.2px !important;
     box-shadow: none !important;
     min-width: 130px !important;
     min-height: 65px !important;
+    text-shadow: none !important;
+    text-indent: 0px !important;
   }
 
   @media screen and (max-width: 800px) {

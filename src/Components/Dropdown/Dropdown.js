@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Dropdown.scss";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { toggleHideDropdown } from "../../Redux/Toggle/toggle-actions";
 import { selectCategories } from "../../Redux/Category/category-selectors";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
 import { setTabValue } from "../../Redux/Tab/tab-actions";
 import { selectTabValue } from "../../Redux/Tab/tab-selectors";
+import { createStructuredSelector } from "reselect";
+import {ScrollToTab} from '../../Utils/ScrollToTab';
+import { selectToggleMoreItems } from "../../Redux/Toggle/toggle-selectors";
+import { toggleMoreItems } from "../../Redux/Toggle/toggle-actions";
+
 
 function a11yProps(index) {
   return {
@@ -33,11 +35,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Dropdown = ({ categories, dispatch, value }) => {
+const Dropdown = ({ categories, dispatch, value, divRef, loadMore }) => {
   const classes = useStyles();
 
   function handleChange(event, newValue) {
     dispatch(setTabValue(newValue));
+    return loadMore ? dispatch(toggleMoreItems()) : null;
+  }
+  
+  const onClick = () => {
+      ScrollToTab(divRef);
   }
 
   return (
@@ -49,12 +56,11 @@ const Dropdown = ({ categories, dispatch, value }) => {
         onChange={handleChange}
         aria-label="Vertical tabs example"
         className={classes.tabs}
-        className="tabs"
       >
         {categories.map(
           ({ category_name, category_id, category_image }, index) => (
             <Tab
-              id={category_id}
+              key={category_id}
               label={
                 <span
                   style={{
@@ -68,6 +74,7 @@ const Dropdown = ({ categories, dispatch, value }) => {
               }
               {...a11yProps(index)}
               className="dropdown-tab"
+              onClick={onClick}
             />
           )
         )}
@@ -76,9 +83,10 @@ const Dropdown = ({ categories, dispatch, value }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  categories: selectCategories(state),
-  value: selectTabValue(state)
+const mapStateToProps = createStructuredSelector({
+  categories: selectCategories,
+  value: selectTabValue,
+  loadMore: selectToggleMoreItems,
 });
 
 export default compose(

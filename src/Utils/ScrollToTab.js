@@ -1,3 +1,3 @@
-export const ScrollToTab = (ref) => {
- console.log(ref)
+export const ScrollToTab = ref => {
+	window.scrollTo(0, ref.current.offsetTop);
 }

@@ -1,47 +1,49 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import "./ProductList.scss";
-import { getProductList } from "../../Redux/Product/product-actions";
 import { selectProductList } from "../../Redux/Product/product-selectors";
 import ProductItem from "../ProductItem/ProductItem";
 import { connect } from "react-redux";
-import { compose } from "redux";
 import Fade from "react-reveal/Fade";
 import { toggleMoreItems } from "../../Redux/Toggle/toggle-actions";
 import { selectToggleMoreItems } from "../../Redux/Toggle/toggle-selectors";
 import CustomButton from "../CustomButton/CustomButton";
 import Footer from "../Footer/Footer";
+import { createStructuredSelector } from "reselect";
+import {ScrollToTab} from '../../Utils/ScrollToTab';
 
-const scrollToRef = ref => window.scrollTo(0, ref.current.offsetTop);
+const ProductList = ({ product, loadMore, dispatch, divRef, categoryName }) => {
 
-const ProductList = ({ product, loadMore, dispatch, divRef }) => {
-  const executeScroll = () => {
-    scrollToRef(divRef);
-  };
+  const onClick = () => {
+    ScrollToTab(divRef);
+    setTimeout(() => {dispatch(toggleMoreItems())}, 700)
+  }
   return (
     <Fade>
       <div className="product-list-outer">
         <div className="product-list-inner">
-          {product
+          {
+            product
             .filter((item, index) => index < 3)
             .map(item => (
-              <ProductItem id={item.id} item={item} />
-            ))}
-          {loadMore
+              <ProductItem key={item.id} item={item} />
+            ))
+          }
+          {
+            loadMore
             ? product
                 .filter((item, index) => index >= 3)
-                .map(item => <ProductItem id={item.id} item={item} />)
-            : null}
+                .map(item => <ProductItem key={item.id} item={item} />)
+            : null
+          }
         </div>
       </div>
       <div className="product-list-button">
-        {product.length > 3 ? (
+        {
+          product.length > 3 ? (
           loadMore ? (
             <CustomButton
               viewall
-              onClick={() => {
-                executeScroll();
-                dispatch(toggleMoreItems());
-              }}
+              onClick={onClick}
             >
               View Less Products
             </CustomButton>
@@ -50,19 +52,17 @@ const ProductList = ({ product, loadMore, dispatch, divRef }) => {
               View All Products
             </CustomButton>
           )
-        ) : null}
+        ) : null
+        }
       </div>
-      <Footer />
+      <Footer divRef={divRef} length={product.length} name={categoryName} />
     </Fade>
   );
 };
 
-const mapStateToProps = state => ({
-  product: selectProductList(state),
-  loadMore: selectToggleMoreItems(state)
+const mapStateToProps = createStructuredSelector({
+  product: selectProductList,
+  loadMore: selectToggleMoreItems
 });
 
-export default compose(
-  connect(mapStateToProps),
-  React.memo
-)(ProductList);
+export default connect(mapStateToProps)(ProductList);

@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Header from "./Components/Header/Header";
-import Category from "./Components/Category/Category";
+import CategoryContainer from "./Components/Category/CategoryContainer";
 import { getCategories } from "./Redux/Category/category-actions";
 import { selectCategories } from "./Redux/Category/category-selectors";
 import { connect } from "react-redux";
@@ -15,7 +15,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        {this.props.categories.length ? <Category /> : null}
+        <CategoryContainer /> 
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import TabActionTypes from "./tab-types";
 
 const INITIAL_STATE = {
-  value: 0
+  value: 0,
 };
 
 const tabReducer = (state = INITIAL_STATE, action) => {
