@@ -52,7 +52,8 @@ class Footer extends React.Component {
               >
                 change
               </span>
-              { length > 3
+              { 
+                length > 3
                 ? (loadMore 
                   ?<span
                   className="footer__view-more"
