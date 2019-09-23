@@ -1,0 +1,38 @@
+.footer {
+  width: 90%;
+  height: 60px;
+  box-shadow: 0.1px 0.1px 3px 0.1px #c9c9c9;
+  margin: 50px auto;
+  position: relative;
+
+  @media screen and (min-width: 800px) {
+    display: none;
+  }
+  @media screen and (max-width: 800px) {
+    display: flex;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: row;
+    color: #757575;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__category {
+    font-size: 13px;
+    margin-left: 15px;
+  }
+
+  &__category-change {
+    font-size: 13px;
+    margin-right: 15px;
+  }
+
+  &__view-more {
+    font-size: 13px;
+    margin-right: 15px;
+  }
+}

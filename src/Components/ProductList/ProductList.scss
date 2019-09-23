@@ -1,0 +1,29 @@
+.product-list-outer {
+  display: flex;
+  justify-content: center;
+}
+
+.product-list-inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-gap: 60px;
+  text-align: center;
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 100%;
+    text-align: left;
+    width: 100%;
+  }
+}
+
+.product-list-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+}

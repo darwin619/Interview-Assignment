@@ -1,0 +1,45 @@
+.instock-button {
+  background-color: rgb(79, 207, 100);
+  border: none;
+  font-size: 0.75rem;
+  font-weight: bolder;
+  padding: 13px;
+  border-radius: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  width: 200px;
+  cursor: pointer;
+  margin-top: 6px;
+
+  @media screen and (min-width: 800px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.outofstock-button {
+  background-color: #b0b0b0;
+}
+
+.viewall-button {
+  background: transparent;
+  border: 1px solid #157ebc;
+  color: #157ebc;
+  cursor: pointer;
+  outline: none;
+  font-size: 12px;
+  padding: 16px;
+  text-transform: capitalize;
+  border-radius: 2px;
+
+  @media screen and (max-width: 800px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &:hover {
+    background: #157ebc;
+    color: #fff;
+  }
+}

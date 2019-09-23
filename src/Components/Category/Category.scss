@@ -1,0 +1,63 @@
+.category-title {
+  font-size: 28px;
+  margin-left: 20px;
+}
+
+.category-sub {
+  font-size: 0.9rem;
+  color: #757575;
+  font-weight: 500;
+  margin-left: 20px;
+}
+
+.appbar {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  box-shadow: none !important;
+  width: 91% !important;
+  margin: 30px auto;
+  overflow-x: auto !important;
+}
+
+.tabs {
+  background-color: white !important;
+  box-shadow: none !important;
+
+  @media screen and (min-width: 800px) {
+    border-bottom: 2px solid rgba(204, 204, 204, 0.8) !important;
+    border-top: 1px solid rgba(204, 204, 204, 0.8) !important;
+  }
+}
+
+.tab {
+  @media screen and (min-width: 800px) {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 16px !important;
+    font-weight: bolder !important;
+    color: #757575 !important;
+    padding: 0 !important;
+    line-height: 1.3;
+    box-shadow: none !important;
+    min-width: 130px !important;
+    min-height: 65px !important;
+  }
+
+  @media screen and (max-width: 800px) {
+    margin-right: 10px !important;
+    opacity: 1 !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 13px !important;
+    height: 65px !important;
+    width: 120px !important;
+    border-radius: 4px !important;
+    border: none !important;
+  }
+
+  .tab-panel {
+    padding: 0 !important;
+  }
+}
