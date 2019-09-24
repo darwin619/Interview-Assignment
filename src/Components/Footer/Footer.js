@@ -79,4 +79,4 @@ const mapStateToProps = createStructuredSelector({
   product: selectProductList
 });
 
-export default connect(mapStateToProps)(onClickOutside(Footer));
+export default connect(mapStateToProps)(Footer);
