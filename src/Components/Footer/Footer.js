@@ -15,6 +15,7 @@ import onClickOutside from "react-onclickoutside";
 import { selectTabValue } from "../../Redux/Tab/tab-selectors";
 import { createStructuredSelector } from "reselect";
 import {ScrollToTab} from '../../Utils/ScrollToTab';
+import { selectProductList } from "../../Redux/Product/product-selectors";
 
 
 class Footer extends React.Component {
@@ -24,10 +25,10 @@ class Footer extends React.Component {
   };
 
   render() {
-    const { dispatch, loadMore, hidden, divRef, length, name } = this.props;
-    const onClick = () => {
+    const { dispatch, loadMore, hidden, divRef, product, name } = this.props;
+    const onChange = () => {
       ScrollToTab(divRef);
-      setTimeout(() => {dispatch(toggleMoreItems())}, 700)
+      setTimeout(() => dispatch(toggleMoreItems()), 750)
   }
     return (
       <Fade>
@@ -53,21 +54,22 @@ class Footer extends React.Component {
                 change
               </span>
               { 
-                length > 3
+                product.length > 3
                 ? (loadMore 
-                  ?<span
-                  className="footer__view-more"
-                  onClick={onClick}>
-                  view less
-                </span>
-                 : <span
-                  className="footer__view-more"
-                  onClick={() => dispatch(toggleMoreItems())}>
-                  view more
-                </span>)
+                  ? (<span
+                    className="footer__view-more"
+                    onClick={onChange}>
+                    view less
+                  </span>)
+                 : (<span
+                   className="footer__view-more"
+                   onClick={() => dispatch(toggleMoreItems())}>
+                   view more
+                 </span>))
                 : null
               }
             </div>
+            {console.log(product.length,loadMore)}
           </div>
           {hidden ? null : <Dropdown divRef={divRef} />}
         </div>
@@ -79,7 +81,8 @@ class Footer extends React.Component {
 const mapStateToProps = createStructuredSelector({
   loadMore: selectToggleMoreItems,
   hidden: selectDropdownHidden,
-  value: selectTabValue
+  value: selectTabValue,
+  product: selectProductList,  
 });
 
 export default connect(mapStateToProps)(onClickOutside(Footer));
