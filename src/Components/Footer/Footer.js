@@ -18,10 +18,7 @@ import { ScrollToTab } from "../../Utils/ScrollToTab";
 import { selectProductList } from "../../Redux/Product/product-selectors";
 
 class Footer extends React.Component {
-  handleClickOutside = () => {
-    return this.props.hidden ? null : this.props.dispatch(toggleHideDropdown());
-  };
-
+ 
   render() {
     const { dispatch, loadMore, hidden, divRef, product, name } = this.props;
     const onChange = () => {
