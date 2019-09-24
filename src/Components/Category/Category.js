@@ -41,7 +41,7 @@ const Category = ({ categories, dispatch, loadMore, value }) => {
     const categoryName = categoryItem[0].category_name;
     setName(categoryName);
     dispatch(getProductList(id));
-  }, [value, categories, dispatch]);
+  }, [value]);
 
   function handleChange(event, newValue) {
     dispatch(setTabValue(newValue));
