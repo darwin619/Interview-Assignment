@@ -16,6 +16,7 @@ import { selectTabValue } from "../../Redux/Tab/tab-selectors";
 import { createStructuredSelector } from "reselect";
 import {ScrollToTab} from '../../Utils/ScrollToTab';
 import { selectProductList } from "../../Redux/Product/product-selectors";
+import smoothscroll from 'smoothscroll-polyfill';
 
 
 class Footer extends React.Component {
@@ -26,6 +27,7 @@ class Footer extends React.Component {
 
   onChange = () => {
     const{divRef, dispatch} = this.props;
+    smoothscroll.polyfill();
     ScrollToTab(divRef);
     setTimeout(() => dispatch(toggleMoreItems()), 750)
 }
