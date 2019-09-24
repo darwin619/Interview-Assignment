@@ -15,7 +15,7 @@ const ProductList = ({ product, loadMore, dispatch, divRef, categoryName }) => {
 
   const onClick = () => {
     ScrollToTab(divRef);
-    setTimeout(() => {dispatch(toggleMoreItems())}, 900)
+    setTimeout(() => {dispatch(toggleMoreItems())}, 1400)
   }
   return (
     <Fade>
