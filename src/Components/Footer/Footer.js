@@ -28,9 +28,7 @@ class Footer extends React.Component {
     return (
       <Fade>
         <div
-          className="footer"
-          onClick={() => (hidden ? null : dispatch(toggleHideDropdown()))}
-        >
+          className="footer">
           <div className="footer__inner">
             <div className="footer__start">
               <span
@@ -50,15 +48,15 @@ class Footer extends React.Component {
               </span>
               {
                 loadMore 
-                ? <span className="footer__view-more">
+                ? <div className="footer__view-more">
                     view less
-                  </span>
-                 : <span
+                  </div>
+                 : <div
                     className="footer__view-more"
                     onClick={() => dispatch(toggleMoreItems())}
                   >
                     view more
-                  </span>
+                  </div>
               }
             </div>
           </div>
