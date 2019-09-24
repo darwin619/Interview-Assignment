@@ -55,7 +55,7 @@ const ProductList = ({ product, loadMore, dispatch, divRef, categoryName }) => {
         ) : null
         }
       </div>
-      <Footer divRef={divRef} length={product.length} name={categoryName} />
+      <Footer divRef={divRef} name={categoryName} />
     </Fade>
   );
 };

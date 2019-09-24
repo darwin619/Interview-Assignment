@@ -14,12 +14,10 @@ import Dropdown from "../Dropdown/Dropdown";
 import onClickOutside from "react-onclickoutside";
 import { selectTabValue } from "../../Redux/Tab/tab-selectors";
 import { createStructuredSelector } from "reselect";
-import {ScrollToTab} from '../../Utils/ScrollToTab';
+import { ScrollToTab } from "../../Utils/ScrollToTab";
 import { selectProductList } from "../../Redux/Product/product-selectors";
 
-
 class Footer extends React.Component {
-
   handleClickOutside = () => {
     return this.props.hidden ? null : this.props.dispatch(toggleHideDropdown());
   };
@@ -28,8 +26,8 @@ class Footer extends React.Component {
     const { dispatch, loadMore, hidden, divRef, product, name } = this.props;
     const onChange = () => {
       ScrollToTab(divRef);
-      setTimeout(() => dispatch(toggleMoreItems()), 750)
-  }
+      setTimeout(() => dispatch(toggleMoreItems()), 750);
+    };
     return (
       <Fade>
         <div
@@ -43,7 +41,7 @@ class Footer extends React.Component {
                 onClick={() => dispatch(toggleHideDropdown())}
               >
                 Showing For
-                <span className="footer__name" >{name}</span>
+                <span className="footer__name">{name}</span>
               </span>
             </div>
             <div className="footer__end">
@@ -53,23 +51,19 @@ class Footer extends React.Component {
               >
                 change
               </span>
-              { 
-                product.length > 3
-                ? (loadMore 
-                  ? (<span
-                    className="footer__view-more"
-                    onClick={onChange}>
+              {
+                loadMore 
+                ? <span className="footer__view-more">
                     view less
-                  </span>)
-                 : (<span
-                   className="footer__view-more"
-                   onClick={() => dispatch(toggleMoreItems())}>
-                   view more
-                 </span>))
-                : null
+                  </span>
+                 : <span
+                    className="footer__view-more"
+                    onClick={() => dispatch(toggleMoreItems())}
+                  >
+                    view more
+                  </span>
               }
             </div>
-            {console.log(product.length,loadMore)}
           </div>
           {hidden ? null : <Dropdown divRef={divRef} />}
         </div>
@@ -82,7 +76,7 @@ const mapStateToProps = createStructuredSelector({
   loadMore: selectToggleMoreItems,
   hidden: selectDropdownHidden,
   value: selectTabValue,
-  product: selectProductList,  
+  product: selectProductList
 });
 
 export default connect(mapStateToProps)(onClickOutside(Footer));
