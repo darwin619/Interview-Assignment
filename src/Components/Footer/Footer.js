@@ -27,7 +27,7 @@ class Footer extends React.Component {
   onChange = () => {
     const{divRef, dispatch} = this.props;
     ScrollToTab(divRef);
-    setTimeout(() => dispatch(toggleMoreItems()), 700)
+    window.setTimeout(dispatch, 900, toggleMoreItems(), null);
 }
 
   render() {

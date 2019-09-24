@@ -1,3 +1,6 @@
+import $ from 'jquery';
+
 export const ScrollToTab = ref => {
-	window.scrollTo({ top: ref.current.offsetTop, behavior: 'smooth' })
+	const current = ref.current
+	$("html, body").animate({ scrollTop: current.offsetTop }, "fast");
 }
