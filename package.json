@@ -9,7 +9,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@material-ui/core": "^4.4.2",
     "clear-sans-webfont": "^1.1.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "node-sass": "^4.12.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
